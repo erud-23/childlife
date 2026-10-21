@@ -112,7 +112,17 @@ function startQuiz(mode){
     const ra=rec(a.id), rb=rec(b.id);
     return (rb.misses*3+(rb.attempts-rb.correct))-(ra.misses*3+(ra.attempts-ra.correct));
    }).slice(0,n);
- } else ordered=shuffle(candidates).slice(0,n);
+ } else {
+   // Mix subtopics before filling the quiz so a short session is less likely to repeat the same generic concept template.
+   const pool=shuffle(candidates), groups=new Map();
+   for(const q of pool){const key=q.topic+"::"+q.subtopic;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(q);}
+   const buckets=shuffle([...groups.values()]);
+   ordered=[];
+   while(ordered.length<n&&buckets.length){
+     for(let i=buckets.length-1;i>=0;i--){if(buckets[i].length)ordered.push(buckets[i].shift());if(!buckets[i].length)buckets.splice(i,1);}
+   }
+   ordered=ordered.slice(0,n);
+ }
  session={mode,items:ordered,index:0,correct:0,answered:0,results:[],finished:false,seconds:mode==="quick"?300:null,started:Date.now()};
  $("modePill").textContent=mode==="quick"?"5-minute practice":mode==="review"?"Review weak areas":"Topic practice";
  $("timer").textContent=mode==="quick"?"05:00":"Untimed";

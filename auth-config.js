@@ -4,6 +4,6 @@
  * NEVER put a Supabase service_role/secret key in this file.
  */
 window.CHILD_LIFE_AUTH_CONFIG = {
-  url: "",
+  url: "https://zfjhkjguyuxackbrlhvz.supabase.co",
   anonKey: ""
 };

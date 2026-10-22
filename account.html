@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#193b4b">
+  <meta name="description" content="Sign in or create a Child Life Study Lab account using a one-time email code.">
+  <title>Sign in · Child Life Study Lab</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand-link" href="./index.html" aria-label="Child Life Study Lab home">
+      <div class="brand">Child Life <span>Study Lab</span><small>Your personal adaptive practice space</small></div>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="nav-link" href="./index.html">Dashboard</a>
+      <a class="account-link active" href="./account.html" aria-current="page">Sign in / Create account</a>
+    </nav>
+  </header>
+  <main class="auth-main">
+    <a class="auth-back" href="./index.html">← Back to study dashboard</a>
+    <div class="auth-layout">
+      <section class="auth-card" aria-labelledby="authTitle">
+        <div class="eyebrow">Account access</div>
+        <h1 id="authTitle">Welcome to your study space.</h1>
+        <p>Sign in or create an account with your email. No password to remember.</p>
+        <form id="authForm" class="auth-form" novalidate>
+          <div id="authForms">
+            <div class="auth-field">
+              <label for="authEmail">Email address</label>
+              <input id="authEmail" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" maxlength="254" required>
+            </div>
+            <div id="codeStep" class="hidden">
+              <div class="auth-field">
+                <label for="authCode">Six-digit email code</label>
+                <input id="authCode" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="123456">
+              </div>
+              <p class="muted">Check your inbox and spam folder. Enter the code sent to the same email address above.</p>
+            </div>
+            <div class="auth-actions">
+              <button id="sendCodeBtn" type="submit">Email me a sign-in code</button>
+              <button id="verifyCodeBtn" class="secondary" type="button" onclick="verifyLoginCode()">Verify code &amp; sign in</button>
+            </div>
+          </div>
+          <div id="authSignedIn" class="hidden">
+            <div class="study-icon" aria-hidden="true">✓</div>
+            <h2>You're signed in</h2>
+            <p class="muted">Signed in as <strong id="authUserEmail"></strong></p>
+            <div class="auth-actions">
+              <a class="account-link" style="justify-content:center;margin:0" href="./index.html">Continue to Study Lab</a>
+              <button class="secondary" type="button" onclick="signOutUser()">Sign out</button>
+            </div>
+          </div>
+        </form>
+        <p id="authStatus" class="auth-status" role="status" aria-live="polite">Enter your email to receive a one-time six-digit code.</p>
+        <p class="muted" style="font-size:.82rem">By signing in, you can verify access to your account. Study progress is currently saved locally in this browser and does not yet sync across devices.</p>
+      </section>
+      <aside class="auth-aside">
+        <div class="study-icon" aria-hidden="true">✉</div>
+        <div class="eyebrow">Simple and secure</div>
+        <h2>A sign-in code instead of a password</h2>
+        <p>We'll send a short-lived verification code to your email. Enter it here to finish signing in.</p>
+        <ul>
+          <li>No password to create or remember</li>
+          <li>One-time email verification code</li>
+          <li>Your quizzes and flashcards are ready in the study dashboard</li>
+        </ul>
+      </aside>
+    </div>
+    <div class="footer">Child Life Study Lab is an independent study aid and is not affiliated with or endorsed by the Association of Child Life Professionals.</div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./auth-config.js"></script>
+  <script src="./auth.js"></script>
+</body>
+</html>

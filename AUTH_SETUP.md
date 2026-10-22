@@ -36,9 +36,10 @@ In the Supabase dashboard:
 
 1. Commit the values in `auth-config.js` to `main` (the URL and publishable/anon key are public browser configuration, not secrets).
 2. Wait for GitHub Pages to deploy, then open https://erud-23.github.io/childlife/.
-3. Enter an email address you control and choose **Email me a code**.
-4. Check the inbox/spam folder, enter the six-digit code, and choose **Verify code & sign in**.
-5. Sign out, then sign in again with a fresh code.
+3. Choose **Sign in / Create account** in the top-right navigation. This opens the dedicated `account.html` page.
+4. Enter an email address you control and choose **Email me a sign-in code**.
+5. Check the inbox/spam folder, enter the six-digit code, and choose **Verify code & sign in**.
+6. After verification, use **Continue to Study Lab**. Sign out and test again with a fresh code if needed.
 
 The interface intentionally remains inactive until the Supabase URL and key are configured.
 
@@ -49,3 +50,8 @@ The interface intentionally remains inactive until the Supabase URL and key are 
 - Keep the publishable/anon key public, but never expose a service_role/secret key.
 - Configure rate limits and, for a public launch, consider CAPTCHA/bot protection in Supabase Auth.
 - **Study progress is still stored locally in each browser.** Signing in does not yet sync progress between devices or protect the question bank behind an authenticated API. The current question bank is still delivered to the browser, so this login feature by itself does not prevent copying it.
+
+
+## Where the files live
+
+The redesigned site keeps the study dashboard in `index.html`, shared presentation in `styles.css`, study behavior in `app.js`, and question content in `question-bank.js`. Email sign-in has its own `account.html` page and `auth.js` script. The top-right **Sign in / Create account** link opens the dedicated account page rather than embedding the form in the dashboard.

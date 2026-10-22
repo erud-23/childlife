@@ -5,5 +5,5 @@
  */
 window.CHILD_LIFE_AUTH_CONFIG = {
   url: "https://zfjhkjguyuxackbrlhvz.supabase.co",
-  anonKey: ""
+  anonKey: "sb_publishable_nneK32RWK_rpu8OEaPi0xQ_4XKEV3SM"
 };

@@ -15,6 +15,7 @@ function initEmailAuth() {
   const cfg = window.CHILD_LIFE_AUTH_CONFIG || {};
   const sendBtn = authEl("sendCodeBtn");
   const verifyBtn = authEl("verifyCodeBtn");
+  if (verifyBtn) verifyBtn.disabled = true;
   if (!window.supabase || !window.supabase.createClient || !cfg.url || !cfg.anonKey) {
     if (sendBtn) sendBtn.disabled = true;
     if (verifyBtn) verifyBtn.disabled = true;
